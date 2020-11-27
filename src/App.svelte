@@ -1,5 +1,8 @@
 <script>
   import Header from "../components/Header.svelte";
+
+  import AddTodoForm from "../components/Todo/AddTodoForm.svelte";
+  import TodoList from "../components/Todo/TodoList.svelte";
   import { todos } from "./stores.js";
 
   // for new todo
@@ -20,13 +23,6 @@
     margin: 0 auto;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
   @media (min-width: 640px) {
     main {
       max-width: none;
@@ -36,17 +32,7 @@
 
 <main>
   <Header />
-  <h1>App</h1>
-  <!-- sample input -->
-  <input bind:value={new_content} placeholder="Add New Todo..." />
-
-  <button on:click={addTodo}> add item </button>
-
-  <!-- // show todo-list -->
-  <ul>
-    {#each $todos as todo, id}
-      <li>{todo.id} - {todo.content}</li>
-    {/each}
-  </ul>
+  <AddTodoForm />
+  <TodoList items={$todos} />
   <p>total: {$todos.length}</p>
 </main>
