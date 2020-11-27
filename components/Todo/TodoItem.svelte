@@ -21,6 +21,10 @@
     margin-bottom: 16px;
   }
 
+  .done {
+    text-decoration: line-through;
+  }
+
   .doneCheck {
     margin-bottom: 0;
     margin-right: 10px;
@@ -43,6 +47,6 @@
     class="doneCheck"
     title="Done"
     bind:checked={item.isDone} />
-  {item.content}
+  <p class={item.isDone ? 'done' : ''}>{item.content}</p>
   <button class="delete-button" on:click={deleteThisItem} />
 </li>

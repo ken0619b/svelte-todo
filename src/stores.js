@@ -5,6 +5,6 @@ export const todos = writable([
   {
     id: 1,
     content: "test",
-    isDone: false,
+    isDone: true,
   },
 ]);
