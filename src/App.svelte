@@ -5,14 +5,6 @@
   import TodoList from "../components/Todo/TodoList.svelte";
   import { todos } from "./stores.js";
 
-  // for new todo
-  let new_content;
-
-  const addTodo = () => {
-    let new_id = $todos.length + 1;
-    $todos = [...$todos, {id: new_id, content: new_content, isDone: false}]
-    new_content = "";
-  }
 </script>
 
 <style>
@@ -33,6 +25,6 @@
 <main>
   <Header />
   <AddTodoForm />
-  <TodoList items={$todos} />
+  <TodoList />
   <p>total: {$todos.length}</p>
 </main>

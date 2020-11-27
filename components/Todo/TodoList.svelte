@@ -1,6 +1,13 @@
 <script>
-  export let items = [];
   import TodoItem from "./TodoItem.svelte";
+  import { todos } from "../../src/stores.js";
+
+  // deleteTodo
+  const deleteTodo = (event) => {
+    $todos = $todos.filter(function (item) {
+      return item.id !== event.detail.id;
+    });
+  };
 </script>
 
 <style>
@@ -16,8 +23,8 @@
 
 <di class="wrapper">
   <ul class="todo-list">
-    {#each items as item, id}
-      <TodoItem {item} />
+    {#each $todos as item, id}
+      <TodoItem {item} on:deleteItem={deleteTodo} />
     {/each}
   </ul>
 </di>

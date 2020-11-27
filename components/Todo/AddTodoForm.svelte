@@ -4,7 +4,7 @@
   let new_content;
 
   const addTodo = () => {
-    let new_id = $todos.length + 1;
+    const new_id = Math.max(...$todos.map(item => item.id)) + 1
     $todos = [...$todos, { id: new_id, content: new_content, isDone: false }];
     new_content = "";
   };
@@ -15,5 +15,5 @@
 
 <header>
   <input bind:value={new_content} placeholder="Add New Todo..." />
-  <button on:click={addTodo}>Add</button>
+  <button on:click={addTodo}> Add</button>
 </header>

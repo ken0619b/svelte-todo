@@ -1,5 +1,14 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   export let item = {};
+
+  const dispatch = createEventDispatcher();
+
+  function deleteThisItem() {
+    dispatch("deleteItem", {
+      id: item.id,
+    });
+  }
 </script>
 
 <style>
@@ -35,5 +44,5 @@
     title="Done"
     bind:checked={item.isDone} />
   {item.content}
-  <button class="delete-button" />
+  <button class="delete-button" on:click={deleteThisItem} />
 </li>
