@@ -1,31 +1,14 @@
 <script>
   import Header from "../components/Header.svelte";
-
-  // sample todo setup
-  let todos = [];
+  import { todos } from "./stores.js";
 
   // for new todo
-  let new_content = "";
+  let new_content;
 
-  // temp initialize
-  todos.push(
-    {
-      id: 1,
-      content: "test",
-      isDone: false,
-    },
-    {
-      id: 2,
-      content: "test-2",
-      isDone: true,
-    }
-  );
-
-  function addTodo() {
-    let new_id = todos.length + 1
-    todos = [...todos, { id: new_id, content: new_content, isDone: false }];
-
-    new_content = '';
+  const addTodo = () => {
+    let new_id = $todos.length + 1;
+    $todos = [...$todos, {id: new_id, content: new_content, isDone: false}]
+    new_content = "";
   }
 </script>
 
@@ -61,8 +44,9 @@
 
   <!-- // show todo-list -->
   <ul>
-    {#each todos as todo, id}
+    {#each $todos as todo, id}
       <li>{todo.id} - {todo.content}</li>
     {/each}
   </ul>
+  <p>total: {$todos.length}</p>
 </main>
